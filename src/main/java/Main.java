@@ -10,23 +10,37 @@ public class Main {
 
     public static void main(String args[]) {
         inicializarUsuarios();
+        //forEach
+        System.out.println("--------------------ForEach--------------------");
         usuarios.stream().forEach(usuario -> {
             usuario.setNombre(usuario.getNombre() + " apellido");
             System.out.println(usuario.getId() + " " + usuario.getNombre());
         });
 
-        List<String> lista = usuarios.stream().map(usuario -> usuario.getNombre()).collect(
+        System.out.println("--------------------Map--------------------");
+        //map, collect y referencia a método estático
+        List<String> listaMap = usuarios.stream().map(usuario -> usuario.getNombre()).collect(
             Collectors.toList());
-        lista.forEach(System.out::println);
+        listaMap.forEach(System.out::println);
+
+        inicializarUsuarios();
+        System.out.println("--------------------Filter--------------------");
+        //filter
+        List<Usuario> listaFilter = usuarios.stream()
+            .filter(usuario -> usuario.getNombre() != "pipe")
+            .filter(usuario -> usuario.getId() < 3)
+            .collect(Collectors.toList());
+        listaFilter
+            .forEach(usuario -> System.out.println(usuario.getId() + " " + usuario.getNombre()));
     }
 
     public static void inicializarUsuarios() {
         usuarios = new ArrayList<>();
         usuarios.add(new Usuario(1, "pipe"));
-        usuarios.add(new Usuario(1, "david"));
-        usuarios.add(new Usuario(1, "dary"));
-        usuarios.add(new Usuario(1, "jorge"));
-        usuarios.add(new Usuario(1, "pao"));
-        usuarios.add(new Usuario(1, "laura"));
+        usuarios.add(new Usuario(2, "david"));
+        usuarios.add(new Usuario(3, "dary"));
+        usuarios.add(new Usuario(4, "jorge"));
+        usuarios.add(new Usuario(5, "pao"));
+        usuarios.add(new Usuario(6, "laura"));
     }
 }
