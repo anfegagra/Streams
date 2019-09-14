@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -13,6 +14,10 @@ public class Main {
             usuario.setNombre(usuario.getNombre() + " apellido");
             System.out.println(usuario.getId() + " " + usuario.getNombre());
         });
+
+        List<String> lista = usuarios.stream().map(usuario -> usuario.getNombre()).collect(
+            Collectors.toList());
+        lista.forEach(System.out::println);
     }
 
     public static void inicializarUsuarios() {
