@@ -32,6 +32,13 @@ public class Main {
             .collect(Collectors.toList());
         listaFilter
             .forEach(usuario -> System.out.println(usuario.getId() + " " + usuario.getNombre()));
+
+        inicializarUsuarios();
+        System.out.println("--------------------FindFirst--------------------");
+        //findFirst
+        Usuario usuario = usuarios.stream().filter(u -> u.getNombre().equals("pipe")).findFirst()
+            .orElse(new Usuario(7, "otro"));
+        System.out.println(usuario.getId() + " " + usuario.getNombre());
     }
 
     public static void inicializarUsuarios() {
@@ -42,5 +49,6 @@ public class Main {
         usuarios.add(new Usuario(4, "jorge"));
         usuarios.add(new Usuario(5, "pao"));
         usuarios.add(new Usuario(6, "laura"));
+        usuarios.add(new Usuario(7, "pipe"));
     }
 }
