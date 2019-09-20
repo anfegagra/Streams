@@ -41,6 +41,7 @@ public class Main {
             .orElse(new Usuario(7, "otro"));
         System.out.println(usuario.getId() + " " + usuario.getNombre());
 
+        System.out.println("--------------------FlatMap--------------------");
         //flatMap
         List<List<String>> nombresVariasListas = new ArrayList<List<String>>(
             Arrays.asList(
@@ -54,6 +55,15 @@ public class Main {
                 Collectors.toList());
 
         nombresUnicaLista.stream().forEach(System.out::println);
+
+        System.out.println("--------------------Peek--------------------");
+        //peek
+        inicializarUsuarios();
+        List<Usuario> usuarios2 = usuarios.stream()
+            .peek(u -> u.setNombre(u.getNombre() + " Apellido2")).collect(
+                Collectors.toList());
+
+        usuarios2.stream().forEach(u -> System.out.println(u.getNombre()));
     }
 
     public static void inicializarUsuarios() {
