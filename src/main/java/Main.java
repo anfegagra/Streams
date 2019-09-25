@@ -64,6 +64,12 @@ public class Main {
                 Collectors.toList());
 
         usuarios2.stream().forEach(u -> System.out.println(u.getNombre()));
+
+        System.out.println("--------------------Count--------------------");
+        //count
+        inicializarUsuarios();
+        long numeroDeItemsFiltrados = usuarios.stream().filter(usu -> usu.getId() < 3).count();
+        System.out.println(numeroDeItemsFiltrados);
     }
 
     public static void inicializarUsuarios() {
