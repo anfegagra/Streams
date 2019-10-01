@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,6 +77,12 @@ public class Main {
         String[] abc = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
         List<String> abcFiltrada = Arrays.stream(abc).skip(2).limit(4).collect(Collectors.toList());
         abcFiltrada.stream().forEach(System.out::println);
+
+        System.out.println("--------------------Sorted--------------------");
+        //sorted
+        inicializarUsuarios();
+        usuarios.stream().sorted(Comparator.comparing(Usuario::getNombre)).collect(
+            Collectors.toList()).stream().forEach(nombre -> System.out.println(nombre.getNombre()));
     }
 
     public static void inicializarUsuarios() {
