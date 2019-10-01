@@ -70,6 +70,12 @@ public class Main {
         inicializarUsuarios();
         long numeroDeItemsFiltrados = usuarios.stream().filter(usu -> usu.getId() < 3).count();
         System.out.println(numeroDeItemsFiltrados);
+
+        System.out.println("--------------------Skip y Limit--------------------");
+        //skip y limit
+        String[] abc = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
+        List<String> abcFiltrada = Arrays.stream(abc).skip(2).limit(4).collect(Collectors.toList());
+        abcFiltrada.stream().forEach(System.out::println);
     }
 
     public static void inicializarUsuarios() {
