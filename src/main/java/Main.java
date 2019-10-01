@@ -83,6 +83,20 @@ public class Main {
         inicializarUsuarios();
         usuarios.stream().sorted(Comparator.comparing(Usuario::getNombre)).collect(
             Collectors.toList()).stream().forEach(nombre -> System.out.println(nombre.getNombre()));
+
+        System.out.println("--------------------Min y max--------------------");
+        //min y max
+        inicializarUsuarios();
+        Usuario usuarioMin = usuarios.stream().min(Comparator.comparing(Usuario::getId)).orElse(null);
+        System.out.println("usuario con id min: " + usuarioMin.getId());
+        Usuario usuarioMax = usuarios.stream().max(Comparator.comparing(Usuario::getId)).orElse(null);
+        System.out.println("usuario con id max: " + usuarioMax.getId());
+
+        System.out.println("--------------------Distinct--------------------");
+        //distinct
+        String[] abcRepetidos = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "j", "a"};
+        List<String> abcSinRepetidos = Arrays.stream(abcRepetidos).distinct().collect(Collectors.toList());
+        abcSinRepetidos.stream().forEach(elemento -> System.out.println(elemento));
     }
 
     public static void inicializarUsuarios() {
