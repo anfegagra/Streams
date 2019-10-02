@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Main {
 
@@ -107,6 +108,15 @@ public class Main {
 		System.out.println("AnyMatch: " + anyMatch);
 		boolean noneMatch = listaNumeros.stream().noneMatch(numero -> numero > 10000);
 		System.out.println("NoneMatch: " + noneMatch);
+
+		System.out.println("--------------------Sum, Average, Range--------------------");
+		//sum, average, range
+		inicializarUsuarios();
+		double result = usuarios.stream().mapToInt(Usuario::getId).average().orElse(0);
+		System.out.println("average: " + result);
+		result = usuarios.stream().mapToInt(Usuario::getId).sum();
+		System.out.println("sum: " + result);
+		System.out.println("range: " + IntStream.range(0, 3).sum()); //startInclusive, endExclusive
     }
 
     public static void inicializarUsuarios() {
