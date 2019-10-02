@@ -97,6 +97,16 @@ public class Main {
         String[] abcRepetidos = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "j", "a"};
         List<String> abcSinRepetidos = Arrays.stream(abcRepetidos).distinct().collect(Collectors.toList());
         abcSinRepetidos.stream().forEach(elemento -> System.out.println(elemento));
+
+		System.out.println("--------------------AllMatch, AnyMatch, NoneMatch--------------------");
+		//allMatch, anyMatch, noneMatch
+		List<Integer> listaNumeros = Arrays.asList(100, 300, 900, 4000);
+		boolean allMatch = listaNumeros.stream().allMatch(numero -> numero > 301);
+		System.out.println("AllMatch: " + allMatch);
+		boolean anyMatch = listaNumeros.stream().anyMatch(numero -> numero > 301);
+		System.out.println("AnyMatch: " + anyMatch);
+		boolean noneMatch = listaNumeros.stream().noneMatch(numero -> numero > 10000);
+		System.out.println("NoneMatch: " + noneMatch);
     }
 
     public static void inicializarUsuarios() {
