@@ -117,6 +117,12 @@ public class Main {
 		result = usuarios.stream().mapToInt(Usuario::getId).sum();
 		System.out.println("sum: " + result);
 		System.out.println("range: " + IntStream.range(0, 3).sum()); //startInclusive, endExclusive
+
+        System.out.println("--------------------Reduce--------------------");
+        //reduce
+        inicializarUsuarios();
+        int resultSum = usuarios.stream().map(Usuario::getId).reduce(100, Integer::sum);
+        System.out.println(resultSum);
     }
 
     public static void inicializarUsuarios() {
