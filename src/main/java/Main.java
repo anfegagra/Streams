@@ -193,6 +193,27 @@ public class Main {
 			.collect(Collectors.mapping(Usuario::getNombre, Collectors.toList()));
 		System.out.println("Lista de nombres mapeados:");
 		listaDeNombres.forEach(System.out::println);
+
+		System.out.println("--------------------parallelStream--------------------");
+		//parallelStream
+		inicializarUsuarios();
+		long tiempo1 = System.currentTimeMillis();
+		listaDeNombres.stream().forEach(nom -> convertirAMayusculas(nom));
+		long tiempo2 = System.currentTimeMillis();
+		System.out.println("Stream normal: " + (tiempo2 - tiempo1));
+		tiempo1 = System.currentTimeMillis();
+		listaDeNombres.parallelStream().forEach(nom -> convertirAMayusculas(nom));
+		tiempo2 = System.currentTimeMillis();
+		System.out.println("Stream paralelo: " + (tiempo2 - tiempo1));
+	}
+
+	public static String convertirAMayusculas(String nombre) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return nombre.toUpperCase();
 	}
 
 	public static void inicializarUsuarios() {
