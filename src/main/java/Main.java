@@ -171,6 +171,20 @@ public class Main {
 		mapaDeListas.get(true).stream().forEach(System.out::println);
 		System.out.println("Lista de números menores que 10:");
 		mapaDeListas.get(false).stream().forEach(System.out::println);
+
+		System.out.println("--------------------groupingBy--------------------");
+		//groupingBy
+		inicializarUsuarios();
+		Map<Character, List<Usuario>> palabrasAgrupadas = usuarios.stream()
+			.collect(Collectors.groupingBy(u -> new Character(u.getNombre().charAt(0))));
+		System.out.println("Palabras que empiezan por p: ");
+		palabrasAgrupadas.get('p').forEach(u -> System.out.println(u.getNombre()));
+		System.out.println("Palabras que empiezan por d: ");
+		palabrasAgrupadas.get('d').forEach(u -> System.out.println(u.getNombre()));
+		System.out.println("Palabras que empiezan por j: ");
+		palabrasAgrupadas.get('j').forEach(u -> System.out.println(u.getNombre()));
+		System.out.println("Palabras que empiezan por l: ");
+		palabrasAgrupadas.get('l').forEach(u -> System.out.println(u.getNombre()));
 	}
 
 	public static void inicializarUsuarios() {
