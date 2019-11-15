@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -133,6 +134,13 @@ public class Main {
 		String nombres = usuarios.stream().map(Usuario::getNombre)
 			.collect(Collectors.joining(" - "));
 		System.out.println("Nombres concatenados con delimitador: " + nombres);
+
+		System.out.println("--------------------toSet--------------------");
+		//reduce
+		inicializarUsuarios();
+		Set<String> nombresSet = usuarios.stream().map(Usuario::getNombre)
+			.collect(Collectors.toSet());
+		nombresSet.forEach(System.out::println);
 	}
 
 	public static void inicializarUsuarios() {
