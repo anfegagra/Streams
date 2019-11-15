@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -160,6 +161,16 @@ public class Main {
 				+ estadisticas1.getAverage() + "\nSuma: " + estadisticas1.getSum()
 				+ "\nTotal elementos: " + estadisticas1.getCount());
 
+		System.out.println("--------------------partitioningBy--------------------");
+		//partitioningBy
+		inicializarUsuarios();
+		List<Integer> numeros = Arrays.asList(1, 4, 50, 87, 0, 32, 42, 9, 99);
+		Map<Boolean, List<Integer>> mapaDeListas = numeros.stream()
+			.collect(Collectors.partitioningBy(numero -> numero > 10));
+		System.out.println("Lista de números mayores que 10:");
+		mapaDeListas.get(true).stream().forEach(System.out::println);
+		System.out.println("Lista de números menores que 10:");
+		mapaDeListas.get(false).stream().forEach(System.out::println);
 	}
 
 	public static void inicializarUsuarios() {
