@@ -185,6 +185,14 @@ public class Main {
 		palabrasAgrupadas.get('j').forEach(u -> System.out.println(u.getNombre()));
 		System.out.println("Palabras que empiezan por l: ");
 		palabrasAgrupadas.get('l').forEach(u -> System.out.println(u.getNombre()));
+
+		System.out.println("--------------------mapping--------------------");
+		//mapping
+		inicializarUsuarios();
+		List<String> listaDeNombres = usuarios.stream()
+			.collect(Collectors.mapping(Usuario::getNombre, Collectors.toList()));
+		System.out.println("Lista de nombres mapeados:");
+		listaDeNombres.forEach(System.out::println);
 	}
 
 	public static void inicializarUsuarios() {
