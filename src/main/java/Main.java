@@ -129,14 +129,14 @@ public class Main {
 		System.out.println(resultSum);
 
 		System.out.println("--------------------Joining--------------------");
-		//reduce
+		//joining
 		inicializarUsuarios();
 		String nombres = usuarios.stream().map(Usuario::getNombre)
 			.collect(Collectors.joining(" - "));
 		System.out.println("Nombres concatenados con delimitador: " + nombres);
 
 		System.out.println("--------------------toSet--------------------");
-		//reduce
+		//toSet
 		inicializarUsuarios();
 		Set<String> nombresSet = usuarios.stream().map(Usuario::getNombre)
 			.collect(Collectors.toSet());
