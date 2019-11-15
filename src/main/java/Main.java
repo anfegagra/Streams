@@ -3,6 +3,7 @@ package main.java;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -141,6 +142,24 @@ public class Main {
 		Set<String> nombresSet = usuarios.stream().map(Usuario::getNombre)
 			.collect(Collectors.toSet());
 		nombresSet.forEach(System.out::println);
+
+		System.out.println("--------------------summarizingDouble--------------------");
+		//summarizingDouble
+		inicializarUsuarios();
+		DoubleSummaryStatistics estadisticas = usuarios.stream()
+			.collect(Collectors.summarizingDouble(Usuario::getId));
+		System.out.println(
+			"Max: " + estadisticas.getMax() + "\nMin: " + estadisticas.getMin() + "\nMedia: "
+				+ estadisticas.getAverage() + "\nSuma: " + estadisticas.getSum()
+				+ "\nTotal elementos: " + estadisticas.getCount());
+
+		DoubleSummaryStatistics estadisticas1 = usuarios.stream().mapToDouble(Usuario::getId)
+			.summaryStatistics();
+		System.out.println(
+			"Max: " + estadisticas1.getMax() + "\nMin: " + estadisticas1.getMin() + "\nMedia: "
+				+ estadisticas1.getAverage() + "\nSuma: " + estadisticas1.getSum()
+				+ "\nTotal elementos: " + estadisticas1.getCount());
+
 	}
 
 	public static void inicializarUsuarios() {
