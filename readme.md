@@ -1,3 +1,11 @@
+ORM -> hibernate
+JPA -> java persistance api
+Hibernate -> database independence
+
+**cuando aparece que la base de datos ya está cerrada, puede que sea porque a alguna entidad le falta el @Entity
+
+**Cuando se pone @ManyToMany en dos entidades, solo una puede tener @JoinTable
+
 **Formato Función Lambda
 (parámetros) -> expresión
 Cuando hay más de una operación en la expresión deben poner llaves {}
@@ -78,3 +86,54 @@ filter/map/reduce
 
 **hay métodos intermedios -> puede haber/aceptar otros métodos sobre los cuales operar
 hay métodos finales -> una vez se llamen ya no se puede utilizar más métodos
+
+
+
+**FUNCIONES DE ALTO ORDEN o FUNCIONES DE ORDEN SUPERIOR (HIGH ORDER FUNCTIONS) --> funciones que (1) pueden recibir una función como parámetro de entrada o funciones que (2) pueden devolver una función en el return de la misma
+
+**Interfaz funcional Fuction<T, R> -> interface Function<T t, R r> { R apply(T t)} donde T es el parámetro de entrada y R es el valor de retorno
+
+**
+// Interfaz funciona BiFunction<T, U, R>
+		/*
+		interface BiFunction<T, U, R> {
+			R apply(t, u)
+		 */
+
+// Interfaz funcional Predicate<T> -> función que evalúa una expresión y devuelve y booleano
+		/*
+		interface Predicate<T t> {
+			Boolean test(t)
+		 */
+		 
+// Consumer<T> -> acepta un único parámetro de entrada y no devuelve nada
+
+
+**Qué pasa si uno tiene varias implementaciones de una interface? Para eso se utiliza la anotación @Qualifier para decirle a spring cuál es el bean que quiere/cuál es el bean al que se le quiere hacer autowired
+--> se poner @Qualifier("nombreDelBean") en donde lo está inyectando
+@Qualifier("nombreDelBean") puede ser usado afuera del método si es inyección por setter, si es inyección por constructor, debe ser por medio de los parámetros
+
+@Primary -> técnica que se puede usar cuando se tienen varios beans del mismo tipo y se quiere uno por defecto
+
+@Profile
+Perfiles de spring -> sirve para levantar ciertos bean en específico en tiempo de ejecución
+
+**cuando no hay ningún perfil activo, se tiene la opción del perfil defaul, entonces, si hay varios beans con su respectivo perfil y no hay un perfil activo, se puede agrega una lista a alguno de ellos y agregar el default
+	Ej: @Profile({"es", "default"})
+	
+Tipos Inyección de dependencias:
+- Por propiedad
+- Por constructor
+- Por setter
+
+No es buena práctica utilizar implementaciones concretas para hacer inyección de dependencias; se debe usar interfaces lo que permitirá inyectar en tiempo de ejecución la dependencia que se necesite
+
+IoC - Inversion of Control - ambiente en tiempo de ejecución o framework que inyecta las dependencias
+
+La anotación utilizada en Spring para indicar que se quiere inyectar una dependencia es @Autowired
+
+Si se tiene 2 beans del mismo tipo, para especificar la preferencia de uno sobre el otro se utiliza la anotación @Primary
+
+Para especificar el nombre de un bean que se quiere inyectar se utiliza la anotación @Qualifier("nombreDelBean")
+
+Inversión de dependencias vs Inyección de dependencias -> Inversión de dependencias se utilizan abstracciones (interfaces), Inyección de dependencias se refiere a la inyección de una dependencia en una clase
